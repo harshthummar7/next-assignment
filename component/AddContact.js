@@ -42,7 +42,7 @@ export default function AddContact() {
       <div
         className={`${style.form} row justify-content-center align-items-center`}
       >
-        <div className="col-lg-6" style={{ backgroundColor: "#d79797" }}>
+        <div className="col-lg-6" style={{ backgroundColor: "" }}>
           <div className="container">
             <Form onSubmit={handlesbm}>
               <label className="row justify-content-center font-weight-bold">

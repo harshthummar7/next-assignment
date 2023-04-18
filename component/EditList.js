@@ -3,25 +3,37 @@ import style from "../styles/AddContact.module.css";
 import { Form, Button } from "react-bootstrap";
 
 export default function EditList(props) {
-  //   console.log(props.value);
-  const [name, setName] = useState(props.value.name);
-  const [email, setEmail] = useState(props.value.email);
-  const [phone, setPhone] = useState(props.value.phone);
-  const [company, setCompany] = useState(props.value.company);
-  const [address, setAddress] = useState(props.value.address);
+  const [formData, setFormData] = useState({
+    name: props?.value?.name,
+    email: props?.value?.email,
+    phone: props?.value?.phone,
+    company: props?.value?.company,
+    address: props?.value?.address,
+  });
 
-  console.log(name);
+  useEffect(() => {
+    setFormData({
+      name: props.value.name,
+      email: props.value.email,
+      phone: props.value.phone,
+      company: props.value.company,
+      address: props.value.address,
+    });
+  }, [props.value]);
+
+  console.log(formData);
   const handlesbm = (e) => {
     e.preventDefault();
-    let contact = {
-      name: name,
-      email: email,
-      phone: phone,
-      company: company,
-      address: address,
-    };
-    console.log(contact);
-    props.newList(contact);
+    console.log(formData);
+    props.newList(formData);
+  };
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    console.log(event.target.name, event.target.value);
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
   };
 
   return (
@@ -29,7 +41,7 @@ export default function EditList(props) {
       <div
         className={`${style.form} row justify-content-center align-items-center`}
       >
-        <div className="col-lg-6" style={{ backgroundColor: "#d79797" }}>
+        <div className="col-lg-6">
           <div className="container">
             <Form onSubmit={handlesbm}>
               <label className="row justify-content-center font-weight-bold">
@@ -44,13 +56,8 @@ export default function EditList(props) {
                   required
                   pattern="[A-Za-z\s]+"
                   placeholder="Full name"
-                  defaultValue={props.value.name}
-                  onChange={(e) => setName(e.target.value)}
-                  //   onInvalid={() =>
-                  //     nameRef.current.setCustomValidity(
-                  //       "Please enter a valid name"
-                  //     )
-                  //   }
+                  defaultValue={formData?.name}
+                  onChange={handleInputChange}
                 />
                 <br></br>
 
@@ -62,12 +69,7 @@ export default function EditList(props) {
                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                   placeholder="Email"
                   defaultValue={props.value.email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  //   onInvalid={() =>
-                  //     emailRef.current.setCustomValidity(
-                  //       "Please enter a valid email address"
-                  //     )
-                  //   }
+                  onChange={handleInputChange}
                 />
                 <br></br>
 
@@ -79,12 +81,7 @@ export default function EditList(props) {
                   pattern="[0-9]{10}"
                   placeholder="Phone"
                   defaultValue={props.value.phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  //   onInvalid={() =>
-                  //     phoneRef.current.setCustomValidity(
-                  //       "Please enter a 10-digit phone number"
-                  //     )
-                  //   }
+                  onChange={handleInputChange}
                 />
                 <br></br>
 
@@ -95,7 +92,7 @@ export default function EditList(props) {
                   required
                   placeholder="Company"
                   defaultValue={props.value.company}
-                  onChange={(e) => setCompany(e.target.value)}
+                  onChange={handleInputChange}
                 />
                 <br></br>
 
@@ -106,7 +103,7 @@ export default function EditList(props) {
                   required
                   placeholder="Address"
                   defaultValue={props.value.address}
-                  onChange={(e) => setAddress(e.target.value)}
+                  onChange={handleInputChange}
                 />
                 <br></br>
 

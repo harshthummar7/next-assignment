@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 import Contacts from "@/component/Contacts";
 import AddContact from "@/component/AddContact";
+import Sidebar from "@/component/Sidebar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,12 +12,24 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css"
-        />
+        {/* {
+          <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+          ></link>
+        }
+        {
+          <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+            integrity="sha512-q1nA58pN/6PONXaFStvM0CvyW8pKjwFe0ur72xvQHUhYb8LGHuu3K/L9BZvLehOJW8ck+iywDaGgdKjvL5r0rA=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+          />
+        } */}
       </Head>
       {/* <AddContact /> */}
+      <Sidebar></Sidebar>
       <Contacts />
     </div>
   );

@@ -6,18 +6,48 @@ import { Form, Button } from "react-bootstrap";
 export default function Contacts() {
   const router = useRouter();
   const [list, setList] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
   function fetchContact() {
     setList(JSON.parse(localStorage.getItem("contacts")) || []);
     console.log(list);
   }
 
+  const filterFunction = (userInput) => {
+    if (searchInput === "") {
+      setList(JSON.parse(localStorage.getItem("contacts")));
+      return;
+    }
+    const regex = new RegExp(userInput, "i");
+    let filteredNames = list.filter((x) => {
+      return regex.test(x.name);
+    });
+    setList(filteredNames);
+    console.log(filteredNames);
+  };
+
+  useEffect(() => {
+    filterFunction(searchInput);
+  }, [searchInput]);
+
   useEffect(() => {
     fetchContact();
   }, []);
 
-  function editList(index) {
+  const editList = (index) => {
     router.push(`/edit-list/${index}`);
-  }
+  };
+
+  const deleteList = (index) => {
+    localStorage.setItem(
+      "contacts",
+      JSON.stringify([...list.slice(0, index), ...list.slice(index + 1)])
+    );
+    setList([...list.slice(0, index), ...list.slice(index + 1)]);
+  };
+
+  const handleSearchInput = (e) => {
+    setSearchInput(e.target.value);
+  };
 
   return (
     <div className="container">
@@ -30,6 +60,7 @@ export default function Contacts() {
             className="row form-control"
             type="text"
             placeholder="search"
+            onChange={handleSearchInput}
           />
           <br></br>
           <div className="d-flex justify-content-center">
@@ -39,10 +70,10 @@ export default function Contacts() {
           </div>
         </div>
       </div>
-
+      <br></br>
       {list.length === 0 ? null : (
         <div className="row">
-          <table class="table table-striped">
+          <table className="table table-striped">
             <thead>
               <tr>
                 <th className="text-center" scope="col">
@@ -59,12 +90,17 @@ export default function Contacts() {
                   <tr key={i}>
                     <td className="text-center">
                       <h4>{data.name}</h4>
-                      <h7>{data.email}</h7>
+                      <h6>{data.email}</h6>
                     </td>
                     <td className="text-center">{data.company}</td>
                     <td>
                       <button onClick={() => editList(i)}>
-                        <i class="bi bi-pen"></i>
+                        <i className="bi bi-pen"></i>
+                      </button>
+                    </td>
+                    <td>
+                      <button onClick={() => deleteList(i)}>
+                        <i className="bi bi-trash"></i>
                       </button>
                     </td>
                   </tr>

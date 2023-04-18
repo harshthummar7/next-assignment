@@ -19,17 +19,20 @@ export default function Editlist() {
 
   function fetchContact() {
     const data1 = JSON.parse(localStorage.getItem("contacts"));
-    setValue(data1[id]);
-    setData(data1);
-    console.log(value);
+    if (data1 && data1[id]) {
+      setValue(data1[id]);
+      setData(data1);
+      // console.log(value);
+    }
   }
 
   useEffect(() => {
     fetchContact();
-  }, []);
+  }, [id]);
+
   return (
     <div>
-      <EditList value={value} newList={newEditedValue}></EditList>
+      {value && <EditList value={value} newList={newEditedValue}></EditList>}
     </div>
   );
 }
