@@ -4,11 +4,11 @@ import { Form, Button } from "react-bootstrap";
 
 export default function EditList(props) {
   const [formData, setFormData] = useState({
-    name: props?.value?.name,
-    email: props?.value?.email,
-    phone: props?.value?.phone,
-    company: props?.value?.company,
-    address: props?.value?.address,
+    name: props.value.name,
+    email: props.value.email,
+    phone: props.value.phone,
+    company: props.value.company,
+    address: props.value.address,
   });
 
   useEffect(() => {
@@ -21,7 +21,7 @@ export default function EditList(props) {
     });
   }, [props.value]);
 
-  console.log(formData);
+  // console.log(formData);
   const handlesbm = (e) => {
     e.preventDefault();
     console.log(formData);
@@ -29,7 +29,7 @@ export default function EditList(props) {
   };
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    console.log(event.target.name, event.target.value);
+    console.log(event.target.value);
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: value,

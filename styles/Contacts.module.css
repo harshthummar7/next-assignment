@@ -1,0 +1,54 @@
+.container{
+        display: flex;
+        flex-direction: column;    
+        margin-left: 100px;
+        margin-top: 100px; 
+        width: 55vw; 
+}
+
+.collg{
+    display: flex;
+    width: 100%;
+}
+
+.card{
+    width: 50vw;
+}
+.cardheader{
+    display: flex;
+}
+
+.cardheaderDiv{
+    flex-direction: row;
+    justify-content: space-around;
+    display: flex;
+    width: 100%;
+}
+
+.cardbody{
+    flex-direction: row;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cardbodyDiv{
+    flex-direction: row;
+    justify-content: space-around;
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.info{
+    display: flex;
+    align-items: center;
+    width: 10vw;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.company{
+    width: 10vw;
+}
+

@@ -5,6 +5,7 @@ import styles from "@/styles/Home.module.css";
 import Contacts from "@/component/Contacts";
 import AddContact from "@/component/AddContact";
 import Sidebar from "@/component/Sidebar";
+import Card from "@/component/Card";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,8 +30,9 @@ export default function Home() {
         } */}
       </Head>
       {/* <AddContact /> */}
-      <Sidebar></Sidebar>
+      {/* <Sidebar></Sidebar> */}
       <Contacts />
+      {/* <Card></Card> */}
     </div>
   );
 
