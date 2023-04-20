@@ -1,4 +1,4 @@
-// import style from "../styles/Sidebar.module.css";
+import style from "../styles/Sidebar.module.css";
 // import {
 //   CDBSidebar,
 //   CDBSidebarContent,
@@ -6,7 +6,7 @@
 //   CDBSidebarMenu,
 //   CDBSidebarMenuItem,
 // } from "cdbreact";
-// import { NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 // const Sidebar = () => {
 //   return (
@@ -60,9 +60,9 @@
 //               <CDBSidebarMenuItem>
 //                 {/* <i class="bi bi-gear"></i> */}
 //               </CDBSidebarMenuItem>
-//             </NavLink>
+//             50px</NavLink>
 //           </CDBSidebarMenu>
-//         </CDBSidebarContent>
+//         </CDBSidebarContent>sidebar
 //       </CDBSidebar>
 //     </div>
 //   );
@@ -72,7 +72,40 @@
 
 import React from "react";
 export default function Sidebar() {
-  return <div>sidebar</div>;
+  return (
+    <>
+      <div className={style.main}>
+        <div style={{ marginBottom: "50px", marginTop: "5px" }}>
+          <i className="bi bi-menu-down"></i>
+        </div>
+        <div className={style.div}>
+          <i className="bi bi-house-door"></i>
+        </div>
+
+        <div className={style.div}>
+          <i className="bi bi-person"></i>
+        </div>
+
+        <div className={style.div}>
+          <i className="bi bi-files"></i>
+        </div>
+
+        <div className={style.div}>
+          <i className="bi bi-alarm"></i>
+        </div>
+
+        <div className={style.div}>
+          <i className="bi bi-database"></i>
+        </div>
+
+        <div className={style.div}>
+          <i className="bi bi-calendar"></i>
+        </div>
+
+        <div className={style.div}>
+          <i className="bi bi-gear"></i>
+        </div>
+      </div>
+    </>
+  );
 }
-import Link from "next/link";
-import style from "../styles/Sidebar.module.css";

@@ -3,9 +3,11 @@
     justify-content: end;
 }
 
+
 .card{
     width: 30vw;
     height: auto;
+    background-color: #f5f2f2;
     /* max-width: 600px; */
 }
 

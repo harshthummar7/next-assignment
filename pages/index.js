@@ -6,34 +6,36 @@ import Contacts from "@/component/Contacts";
 import AddContact from "@/component/AddContact";
 import Sidebar from "@/component/Sidebar";
 import Card from "@/component/Card";
+import Heading from "@/component/Heading";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
-    <div>
-      <Head>
-        {/* {
-          <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
-          ></link>
-        }
-        {
-          <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-            integrity="sha512-q1nA58pN/6PONXaFStvM0CvyW8pKjwFe0ur72xvQHUhYb8LGHuu3K/L9BZvLehOJW8ck+iywDaGgdKjvL5r0rA=="
-            crossorigin="anonymous"
-            referrerpolicy="no-referrer"
-          />
-        } */}
-      </Head>
-      {/* <AddContact /> */}
-      {/* <Sidebar></Sidebar> */}
-      <Contacts />
-      {/* <Card></Card> */}
-    </div>
+    <>
+      <div
+        style={{
+          position: "fixed",
+          width: "100%",
+          zIndex: "-1",
+          height: "42px",
+          backgroundColor: "#eff3f7",
+          boxShadow: "0 2px 4px 0 rgb(0 0 0 / 20%)",
+        }}
+      ></div>
+      <div style={{ display: "flex", height: "100vh" }}>
+        <Sidebar></Sidebar>
+        {/* <Heading></Heading> */}
+        <div
+          style={{ display: "flex", alignItems: "baseline", marginTop: "75px" }}
+        >
+          <Head></Head>
+          {/* <AddContact /> */}
+
+          <Contacts></Contacts>
+        </div>
+      </div>
+    </>
   );
 
   /* <>

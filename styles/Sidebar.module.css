@@ -1,5 +1,5 @@
-/* 
-.sidebar {
+
+/* .sidebar {
     min-width: 70px !important;
     width: 70px !important;
     display: flex;
@@ -11,13 +11,20 @@
 
 .header{
     margin-bottom: 80px;
-}
+} */
 
 .main{
     display: flex;
-    height: 100vh;
+    height: 100%;
     overflow:scroll initial;
-} */
+    width: 50px;
+    align-items: center;
+    background-color:#F89880;
+    flex-direction: column;
+} 
+.div{
+  margin-top: 35px;
+}
 
 .sidebar {
     background-color: #f2f2f2;

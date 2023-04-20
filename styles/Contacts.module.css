@@ -1,8 +1,9 @@
+
 .container{
         display: flex;
         flex-direction: column;    
-        margin-left: 100px;
-        margin-top: 100px; 
+        margin-left: 30px;
+        margin-top: 24px; 
         width: 55vw; 
 }
 
@@ -30,7 +31,24 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 8vh;
 }
+
+.cardbody:hover{
+    background-color: #f5f2f29b;
+}
+
+/* .input{
+    content: "";
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    background-image: 
+    background-size: cover;
+} */
 
 .cardbodyDiv{
     flex-direction: row;
@@ -49,6 +67,7 @@
 }
 
 .company{
-    width: 10vw;
+    width: 6vw;
+    overflow-x: hidden;
 }
 

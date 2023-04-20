@@ -55,7 +55,7 @@ export default function AddContact() {
                   className={`${style.data} row form-control`}
                   type="text"
                   required
-                  pattern="[A-Za-z\s]+"
+                  pattern="^[a-zA-Z]+ ?[a-zA-Z]+$"
                   placeholder="Full name"
                   ref={nameRef}
                   onInvalid={() =>

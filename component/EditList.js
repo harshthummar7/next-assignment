@@ -53,6 +53,7 @@ export default function EditList(props) {
                 <input
                   className={`${style.data} row form-control`}
                   type="text"
+                  name="name"
                   required
                   pattern="[A-Za-z\s]+"
                   placeholder="Full name"
@@ -65,6 +66,7 @@ export default function EditList(props) {
                 <input
                   className={`${style.data} row form-control`}
                   type="Email"
+                  name="email"
                   required
                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                   placeholder="Email"
@@ -77,6 +79,7 @@ export default function EditList(props) {
                 <input
                   className={`${style.data} row form-control`}
                   type="tel"
+                  name="phone"
                   required
                   pattern="[0-9]{10}"
                   placeholder="Phone"
@@ -89,6 +92,7 @@ export default function EditList(props) {
                 <input
                   className={`${style.data} row form-control`}
                   type="text"
+                  name="company"
                   required
                   placeholder="Company"
                   defaultValue={props.value.company}
@@ -100,6 +104,7 @@ export default function EditList(props) {
                 <input
                   className={`${style.data} row form-control`}
                   type="text"
+                  name="address"
                   required
                   placeholder="Address"
                   defaultValue={props.value.address}

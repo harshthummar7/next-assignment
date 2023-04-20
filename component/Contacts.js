@@ -4,11 +4,14 @@ import React, { useEffect, useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import style from "../styles/Contacts.module.css";
 import Card from "./Card";
+import Heading from "./Heading";
 
 export default function Contacts() {
   const router = useRouter();
   const [list, setList] = useState([]);
-  const [index, setIndex] = useState(0);
+  const [cardData, setCardData] = useState({});
+  const [c, setC] = useState("");
+  const [isHovering, setIsHovering] = useState(false);
   const [searchInput, setSearchInput] = useState("");
   function fetchContact() {
     setList(JSON.parse(localStorage.getItem("contacts")) || []);
@@ -46,40 +49,67 @@ export default function Contacts() {
       JSON.stringify([...list.slice(0, index), ...list.slice(index + 1)])
     );
     setList([...list.slice(0, index), ...list.slice(index + 1)]);
+    localStorage.removeItem(`${index}`);
   };
 
   const handleSearchInput = (e) => {
     setSearchInput(e.target.value);
   };
-  //console.log(check);
-  const handleCheck = (i) => {
-    setIndex(i);
+  const handleMouseOver = (i) => {
+    const data = JSON.parse(localStorage.getItem("contacts"));
+    setCardData(data[i]);
+    setC(localStorage.getItem(`${i}`));
+    setIsHovering(true);
   };
+  const handleMouseOut = () => {
+    setCardData({});
+    setIsHovering(false);
+    setC("");
+  };
+  const colors = [
+    "red",
+    "orange",
+    "yellow",
+    "green",
+    "blue",
+    "indigo",
+    "violet",
+  ];
+  let index = 0;
+  const clr = (i) => {
+    const color = colors[index];
+    index = (index + 1) % colors.length; // increment index, wrapping around to 0 if we reach the end of the array
+    localStorage.setItem(`${i}`, color);
+    return color;
+  };
+
   return (
     <>
       <div className={`${style.container} container`}>
+        <Heading></Heading>
         <div className="row">
           <div className={`${style.collg} col-lg-6`}>
-            {/* <label className="row form-text text-muted font-weight-bold">
-              Search
-            </label> */}
             <input
-              className="row form-control"
+              className={`${style.input} row form-control `}
               type="text"
               placeholder="search contact"
               style={{
                 borderRadius: "15px",
                 width: "30vw",
-                backgroundColor: "#dbd4d4",
+                backgroundColor: "#f5f2f2",
                 marginLeft: "0",
               }}
               onChange={handleSearchInput}
+              // <i class="bi bi-search"></i>
             />
 
-            <div className="">
+            <div>
               <Link href={"/add-contact"}>
                 <Button
-                  style={{ backgroundColor: "#ed6330", marginLeft: "50px" }}
+                  style={{setList(filteredNames);ndColor: "#F89880",
+                    marginLeft: "50px",
+                    borderColor: "white",
+                  }}
                 >
                   Add Contact
                 </Button>
@@ -97,9 +127,13 @@ export default function Contacts() {
                     <i className="bi bi-plus"></i>
                   </div>
                   <div className={style.cardheaderDiv}>
-                    <p>Basic Info</p>
-                    <p>Company</p>
-                    <p></p>
+                    <div>
+                      <p>Basic Info</p>
+                    </div>
+                    <div>
+                      <p>Company</p>
+                    </div>
+                    <div></div>
                   </div>
                 </div>
                 {list.map((data, i) => {
@@ -107,30 +141,55 @@ export default function Contacts() {
                     <div key={i} className={`${style.cardbody} card-body`}>
                       <div>
                         <i
+                          style={{ fontSize: "10px" }}
                           className="bi bi-square"
-                          onClick={() => handleCheck(i)}
+                          onMouseOver={() => handleMouseOver(i)}
+                          onMouseOut={handleMouseOut}
                         ></i>
                       </div>
                       <div className={style.cardbodyDiv}>
                         <div className={`${style.info}`}>
                           <div
-                            className="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center mr-3"
-                            style={{ width: "30px", height: "30px" }}
+                            className="rounded-circle text-white d-flex align-items-center justify-content-center mr-3"
+                            style={{
+                              width: "38px",
+                              height: "38px",
+                              backgroundColor: clr(i),
+                            }}
                           >
-                            <span className="h4 font-weight-bold m-0">J</span>
+                            <span className="h4 font-weight-bold m-0">
+                              {data.name
+                                .split(" ")
+                                .map((name) => name.charAt(0))
+                                .join("")}
+                            </span>
                           </div>
-                          <div>
-                            <h4 className="card-title">{data.name} </h4>
-                            <h6 classetChecksName="card-subtitle mb-2 text-muted">
+                          <div style={{ overflow: "hidden", width: "101px" }}>
+                            <h4
+                              style={{ fontSize: "20px" }}
+                              className="card-title"
+                            >
+                              {data.name}{" "}
+                            </h4>
+                            <p
+                              style={{ fontSize: "10px" }}
+                              className="card-subtitle mb-2 text-muted"
+                            >
                               {data.email}
-                            </h6>
+                            </p>
                           </div>
                         </div>
 
                         <div className={`${style.company} card-text`}>
                           {data.company}
                         </div>
-                        <div>
+                        <div
+                          style={{
+                            width: "40px",
+                            display: "flex",
+                            justifyContent: "space-between",
+                          }}
+                        >
                           <i
                             className="bi bi-pen"
                             onClick={() => editList(i)}
@@ -149,45 +208,7 @@ export default function Contacts() {
           </div>
         )}
       </div>
-      {/* {index && <Card index={index}></Card>} */}
+      {isHovering ? <Card value={cardData} color={c}></Card> : null}
     </>
   );
 }
-
-// <div className="row">
-//   <table className="table table-striped">
-//     <thead>
-//       <tr>
-//         <th className="text-center" scope="col">
-//           Basic Info
-//         </th>
-//         <th className="text-center" scope="col">
-//           Company
-//         </th>
-//       </tr>
-//     </thead>
-//     <tbody>
-//       {list.map((data, i) => {
-//         return (
-//           <tr key={i}>
-//             <td className="text-center">
-//               <h4>{data.name}</h4>
-//               <h6>{data.email}</h6>
-//             </td>
-//             <td className="text-center">{data.company}</td>
-//             <td>
-//               <button onClick={() => editList(i)}>
-//                 <i className="bi bi-pen"></i>
-//               </button>
-//             </td>
-//             <td>
-//               <button onClick={() => deleteList(i)}>
-//                 <i className="bi bi-trash"></i>
-//               </button>
-//             </td>
-//           </tr>
-//         );
-//       })}
-//     </tbody>
-//   </table>
-// </div>
