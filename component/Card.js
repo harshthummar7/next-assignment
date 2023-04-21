@@ -14,11 +14,11 @@ export default function Card(props) {
   return (
     <div className={style.main}>
       <div className={`${style.card} card`}>
-        <div className="card-header" style={{ borderBottom: "none" }}>
+        <div className={`${style.cardheader} card-header`}>
           <div className={style.header}>
             <div
-              className="rounded-circle text-white d-flex align-items-center justify-content-center mr-3"
-              style={{ width: "50px", height: "50px", backgroundColor: clr }}
+              className={`${style.circle} rounded-circle text-white d-flex align-items-center justify-content-center mr-3"`}
+              style={{ backgroundColor: clr }}
             >
               <span className="h4 font-weight-bold m-0">
                 {data.name

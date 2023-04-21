@@ -41,7 +41,7 @@ export default function EditList(props) {
       <div
         className={`${style.form} row justify-content-center align-items-center`}
       >
-        <div className="col-lg-6">
+        <div className={`${style.collg} col-lg-6`}>
           <div className="container">
             <Form onSubmit={handlesbm}>
               <label className="row justify-content-center font-weight-bold">
@@ -56,8 +56,9 @@ export default function EditList(props) {
                   name="name"
                   required
                   pattern="[A-Za-z\s]+"
+                  maxLength={10}
                   placeholder="Full name"
-                  defaultValue={formData?.name}
+                  defaultValue={props.value.name}
                   onChange={handleInputChange}
                 />
                 <br></br>
@@ -107,6 +108,7 @@ export default function EditList(props) {
                   name="address"
                   required
                   placeholder="Address"
+                  maxLength={20}
                   defaultValue={props.value.address}
                   onChange={handleInputChange}
                 />

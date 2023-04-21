@@ -1,51 +1,61 @@
-
-/* .sidebar {
-    min-width: 70px !important;
-    width: 70px !important;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #F89880;
-    color: #fff;
+.main {
+  display: flex;
+  height: 100%;
+  /* overflow:scroll initial; */
+  width: 50px;
+  align-items: center;
+  background-color: #f89880;
+  flex-direction: column;
+  position: fixed;
 }
 
-.header{
-    margin-bottom: 80px;
-} */
+.main div:first-child {
+  margin-bottom: 7vh;
+  margin-top: 1vh;
+}
 
-.main{
-    display: flex;
-    height: 100%;
-    overflow:scroll initial;
-    width: 50px;
-    align-items: center;
-    background-color:#F89880;
-    flex-direction: column;
-} 
-.div{
+.div {
   margin-top: 35px;
 }
 
-.sidebar {
-    background-color: #f2f2f2;
-    padding: 1rem;
+/* .sidebar {
+  background-color: #f2f2f2;
+  padding: 1rem;
+}
+
+.navList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navLink {
+  color: #333;
+  display: block;
+  font-size: 1.2rem;
+  padding: 0.5rem 0;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+} */
+
+/* .navLink:hover {
+  color: #0070f3;
+} */
+
+@media only screen and (max-width: 320px) {
+  .main {
+    width: 9vw;
   }
-  
-  .navList {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+}
+
+@media only screen and (max-width: 375px) {
+  .main {
+    width: 11vw;
   }
-  
-  .navLink {
-    color: #333;
-    display: block;
-    font-size: 1.2rem;
-    padding: 0.5rem 0;
-    text-decoration: none;
-    transition: color 0.2s ease-in-out;
+}
+
+@media only screen and (max-width: 425px) {
+  .main {
+    width: 13vw;
   }
-  
-  .navLink:hover {
-    color: #0070f3;
-  }
+}

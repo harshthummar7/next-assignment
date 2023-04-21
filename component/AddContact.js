@@ -42,7 +42,7 @@ export default function AddContact() {
       <div
         className={`${style.form} row justify-content-center align-items-center`}
       >
-        <div className="col-lg-6" style={{ backgroundColor: "" }}>
+        <div className={`${style.collg} col-lg-6`}>
           <div className="container">
             <Form onSubmit={handlesbm}>
               <label className="row justify-content-center font-weight-bold">
@@ -56,6 +56,7 @@ export default function AddContact() {
                   type="text"
                   required
                   pattern="^[a-zA-Z]+ ?[a-zA-Z]+$"
+                  maxLength={10}
                   placeholder="Full name"
                   ref={nameRef}
                   onInvalid={() =>
@@ -115,6 +116,7 @@ export default function AddContact() {
                 <input
                   className={`${style.data} row form-control`}
                   type="text"
+                  maxLength={20}
                   required
                   placeholder="Address"
                   ref={addressRef}

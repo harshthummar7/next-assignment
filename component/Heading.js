@@ -1,31 +1,15 @@
 import React from "react";
+import style from "../styles/Heading.module.css";
 
 export default function Heading() {
   return (
     <>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          marginLeft: "5px",
-          marginBottom: "35px",
-        }}
-      >
-        <div
-          style={{
-            backgroundColor: "#F89880",
-            width: "22px",
-            textAlign: "center",
-            borderRadius: "4px",
-          }}
-        >
+      <div className={style.main}>
+        <div>
           <i className="bi bi-person"></i>
         </div>
 
-        <label
-          className="row form-text text-muted font-weight-bold"
-          style={{ marginLeft: "10px" }}
-        >
+        <label className="row form-text text-muted font-weight-bold">
           Contacts
         </label>
       </div>

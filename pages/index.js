@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "next/font/google";
-import styles from "@/styles/Home.module.css";
+import style from "../styles/Index.module.css";
 import Contacts from "@/component/Contacts";
 import AddContact from "@/component/AddContact";
 import Sidebar from "@/component/Sidebar";
@@ -13,25 +13,11 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
   return (
     <>
-      <div
-        style={{
-          position: "fixed",
-          width: "100%",
-          zIndex: "-1",
-          height: "42px",
-          backgroundColor: "#eff3f7",
-          boxShadow: "0 2px 4px 0 rgb(0 0 0 / 20%)",
-        }}
-      ></div>
-      <div style={{ display: "flex", height: "100vh" }}>
+      <div className={style.nav}></div>
+      <div className={style.main}>
         <Sidebar></Sidebar>
-        {/* <Heading></Heading> */}
-        <div
-          style={{ display: "flex", alignItems: "baseline", marginTop: "75px" }}
-        >
+        <div className={style.content}>
           <Head></Head>
-          {/* <AddContact /> */}
-
           <Contacts></Contacts>
         </div>
       </div>

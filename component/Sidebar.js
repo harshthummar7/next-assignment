@@ -75,7 +75,7 @@ export default function Sidebar() {
   return (
     <>
       <div className={style.main}>
-        <div style={{ marginBottom: "50px", marginTop: "5px" }}>
+        <div>
           <i className="bi bi-menu-down"></i>
         </div>
         <div className={style.div}>

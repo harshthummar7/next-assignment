@@ -9,6 +9,7 @@ import Heading from "./Heading";
 export default function Contacts() {
   const router = useRouter();
   const [list, setList] = useState([]);
+  const [mainList, setMainList] = useState([]);
   const [cardData, setCardData] = useState({});
   const [c, setC] = useState("");
   const [isHovering, setIsHovering] = useState(false);
@@ -20,11 +21,11 @@ export default function Contacts() {
 
   const filterFunction = (userInput) => {
     if (searchInput === "") {
-      setList(JSON.parse(localStorage.getItem("contacts")));
+      setMainList(JSON.parse(localStorage.getItem("contacts")));
       return;
     }
     const regex = new RegExp(userInput, "i");
-    let filteredNames = list.filter((x) => {
+    let filteredNames = mainList.filter((x) => {
       return regex.test(x.name);
     });
     setList(filteredNames);
@@ -78,7 +79,7 @@ export default function Contacts() {
   let index = 0;
   const clr = (i) => {
     const color = colors[index];
-    index = (index + 1) % colors.length; // increment index, wrapping around to 0 if we reach the end of the array
+    index = (index + 1) % colors.length;
     localStorage.setItem(`${i}`, color);
     return color;
   };
@@ -93,26 +94,12 @@ export default function Contacts() {
               className={`${style.input} row form-control `}
               type="text"
               placeholder="search contact"
-              style={{
-                borderRadius: "15px",
-                width: "30vw",
-                backgroundColor: "#f5f2f2",
-                marginLeft: "0",
-              }}
               onChange={handleSearchInput}
-              // <i class="bi bi-search"></i>
             />
 
-            <div>
+            <div className={style.add}>
               <Link href={"/add-contact"}>
-                <Button
-                  style={{setList(filteredNames);ndColor: "#F89880",
-                    marginLeft: "50px",
-                    borderColor: "white",
-                  }}
-                >
-                  Add Contact
-                </Button>
+                <Button className={style.button}>Add Contact</Button>
               </Link>
             </div>
           </div>
@@ -141,8 +128,7 @@ export default function Contacts() {
                     <div key={i} className={`${style.cardbody} card-body`}>
                       <div>
                         <i
-                          style={{ fontSize: "10px" }}
-                          className="bi bi-square"
+                          className={`${style.square} bi bi-square`}
                           onMouseOver={() => handleMouseOver(i)}
                           onMouseOut={handleMouseOut}
                         ></i>
@@ -150,10 +136,8 @@ export default function Contacts() {
                       <div className={style.cardbodyDiv}>
                         <div className={`${style.info}`}>
                           <div
-                            className="rounded-circle text-white d-flex align-items-center justify-content-center mr-3"
+                            className={`${style.circle} rounded-circle text-white d-flex align-items-center justify-content-center mr-3`}
                             style={{
-                              width: "38px",
-                              height: "38px",
                               backgroundColor: clr(i),
                             }}
                           >
@@ -164,17 +148,9 @@ export default function Contacts() {
                                 .join("")}
                             </span>
                           </div>
-                          <div style={{ overflow: "hidden", width: "101px" }}>
-                            <h4
-                              style={{ fontSize: "20px" }}
-                              className="card-title"
-                            >
-                              {data.name}{" "}
-                            </h4>
-                            <p
-                              style={{ fontSize: "10px" }}
-                              className="card-subtitle mb-2 text-muted"
-                            >
+                          <div className={style.infoText}>
+                            <h4 className="card-title">{data.name}</h4>
+                            <p className="card-subtitle mb-2 text-muted">
                               {data.email}
                             </p>
                           </div>
@@ -183,13 +159,7 @@ export default function Contacts() {
                         <div className={`${style.company} card-text`}>
                           {data.company}
                         </div>
-                        <div
-                          style={{
-                            width: "40px",
-                            display: "flex",
-                            justifyContent: "space-between",
-                          }}
-                        >
+                        <div className={style.action}>
                           <i
                             className="bi bi-pen"
                             onClick={() => editList(i)}
