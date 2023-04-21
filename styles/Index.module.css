@@ -1,7 +1,6 @@
 .nav {
   position: fixed;
   width: 100%;
-  z-index: -1;
   height: 42px;
   background-color: #eff3f7;
   box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%);
