@@ -24,6 +24,7 @@ export default function EditList(props) {
   // console.log(formData);
   const handlesbm = (e) => {
     e.preventDefault();
+    localStorage.getItem;
     console.log(formData);
     props.newList(formData);
   };
@@ -56,7 +57,7 @@ export default function EditList(props) {
                   name="name"
                   required
                   pattern="[A-Za-z\s]+"
-                  maxLength={10}
+                  maxLength={15}
                   placeholder="Full name"
                   defaultValue={props.value.name}
                   onChange={handleInputChange}

@@ -7,29 +7,36 @@ import Card from "./Card";
 import Heading from "./Heading";
 
 export default function Contacts() {
+  if (typeof window !== "undefined") {
+    var ListData = JSON.parse(localStorage.getItem("contacts"));
+  }
+
   const router = useRouter();
   const [list, setList] = useState([]);
   const [mainList, setMainList] = useState([]);
   const [cardData, setCardData] = useState({});
-  const [c, setC] = useState("");
+  const [colorName, setColorName] = useState("");
   const [isHovering, setIsHovering] = useState(false);
   const [searchInput, setSearchInput] = useState("");
   function fetchContact() {
-    setList(JSON.parse(localStorage.getItem("contacts")) || []);
+    setList(ListData || []);
     console.log(list);
   }
 
   const filterFunction = (userInput) => {
     if (searchInput === "") {
-      setMainList(JSON.parse(localStorage.getItem("contacts")));
+      setMainList(ListData);
       return;
     }
     const regex = new RegExp(userInput, "i");
-    let filteredNames = mainList.filter((x) => {
-      return regex.test(x.name);
-    });
-    setList(filteredNames);
-    console.log(filteredNames);
+    if (mainList !== null) {
+      let filteredNames = mainList.filter((x) => {
+        return regex.test(x.name);
+      });
+
+      setList(filteredNames);
+      console.log(filteredNames);
+    }
   };
 
   useEffect(() => {
@@ -45,11 +52,15 @@ export default function Contacts() {
   };
 
   const deleteList = (index) => {
-    localStorage.setItem(
-      "contacts",
-      JSON.stringify([...list.slice(0, index), ...list.slice(index + 1)])
-    );
-    setList([...list.slice(0, index), ...list.slice(index + 1)]);
+    // localStorage.setItem(
+    //   "contacts",
+    //   JSON.stringify([...list.slice(0, index), ...list.slice(index + 1)])
+    // );
+    // setList([...list.slice(0, index), ...list.slice(index + 1)]);
+    //localStorage.removeItem(`${index}`);
+    const updatedList = list.filter((data, i) => i !== index);
+    localStorage.setItem("contacts", JSON.stringify(updatedList));
+    setList(updatedList);
     localStorage.removeItem(`${index}`);
   };
 
@@ -57,15 +68,15 @@ export default function Contacts() {
     setSearchInput(e.target.value);
   };
   const handleMouseOver = (i) => {
-    const data = JSON.parse(localStorage.getItem("contacts"));
-    setCardData(data[i]);
-    setC(localStorage.getItem(`${i}`));
+    //const data = JSON.parse(localStorage.getItem("contacts"));
+    setCardData(ListData[i]);
+    setColorName(localStorage.getItem(`${i}`));
     setIsHovering(true);
   };
   const handleMouseOut = () => {
     setCardData({});
     setIsHovering(false);
-    setC("");
+    setColorName("");
   };
   const colors = [
     "red",
@@ -178,7 +189,7 @@ export default function Contacts() {
           </div>
         )}
       </div>
-      {isHovering ? <Card value={cardData} color={c}></Card> : null}
+      {isHovering ? <Card value={cardData} color={colorName}></Card> : null}
     </>
   );
 }

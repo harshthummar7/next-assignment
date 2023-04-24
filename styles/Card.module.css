@@ -36,7 +36,7 @@
   display: flex;
   align-items: center;
   flex-basis: 64%;
-  overflow: scroll;
+  overflow: hidden;
 }
 .row {
   display: flex;

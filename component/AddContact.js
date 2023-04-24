@@ -56,7 +56,7 @@ export default function AddContact() {
                   type="text"
                   required
                   pattern="^[a-zA-Z]+ ?[a-zA-Z]+$"
-                  maxLength={10}
+                  maxLength={15}
                   placeholder="Full name"
                   ref={nameRef}
                   onInvalid={() =>
@@ -91,7 +91,7 @@ export default function AddContact() {
                   type="tel"
                   required
                   pattern="[0-9]{10}"
-                  placeholder="Phone"
+                  placeholder="***** *****"
                   ref={phoneRef}
                   onInvalid={() =>
                     phoneRef.current.setCustomValidity(
