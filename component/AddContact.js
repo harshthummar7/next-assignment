@@ -20,7 +20,7 @@ export default function AddContact() {
     fetchContact();
   }, []);
 
-  const handlesbm = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     let contact = {
       name: nameRef.current.value,
@@ -33,7 +33,6 @@ export default function AddContact() {
     list.push(contact);
     setContect(list);
     localStorage.setItem("contacts", JSON.stringify(list));
-    console.log(JSON.parse(localStorage.getItem("contacts")));
     router.push("/");
   };
 
@@ -44,7 +43,7 @@ export default function AddContact() {
       >
         <div className={`${style.collg} col-lg-6`}>
           <div className="container">
-            <Form onSubmit={handlesbm}>
+            <Form onSubmit={handleSubmit}>
               <label className="row justify-content-center font-weight-bold">
                 Add Contact
               </label>

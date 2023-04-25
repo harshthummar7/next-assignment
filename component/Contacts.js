@@ -8,24 +8,20 @@ import Heading from "./Heading";
 
 export default function Contacts() {
   if (typeof window !== "undefined") {
-    var ListData = JSON.parse(localStorage.getItem("contacts"));
+    var listData = JSON.parse(localStorage.getItem("contacts"));
   }
 
   const router = useRouter();
-  const [list, setList] = useState([]);
+  const [list, setList] = useState(listData || []);
   const [mainList, setMainList] = useState([]);
   const [cardData, setCardData] = useState({});
   const [colorName, setColorName] = useState("");
   const [isHovering, setIsHovering] = useState(false);
   const [searchInput, setSearchInput] = useState("");
-  function fetchContact() {
-    setList(ListData || []);
-    console.log(list);
-  }
 
   const filterFunction = (userInput) => {
     if (searchInput === "") {
-      setMainList(ListData);
+      setMainList(listData);
       return;
     }
     const regex = new RegExp(userInput, "i");
@@ -35,7 +31,6 @@ export default function Contacts() {
       });
 
       setList(filteredNames);
-      console.log(filteredNames);
     }
   };
 
@@ -43,21 +38,11 @@ export default function Contacts() {
     filterFunction(searchInput);
   }, [searchInput]);
 
-  useEffect(() => {
-    fetchContact();
-  }, []);
-
   const editList = (index) => {
     router.push(`/edit-list/${index}`);
   };
 
   const deleteList = (index) => {
-    // localStorage.setItem(
-    //   "contacts",
-    //   JSON.stringify([...list.slice(0, index), ...list.slice(index + 1)])
-    // );
-    // setList([...list.slice(0, index), ...list.slice(index + 1)]);
-    //localStorage.removeItem(`${index}`);
     const updatedList = list.filter((data, i) => i !== index);
     localStorage.setItem("contacts", JSON.stringify(updatedList));
     setList(updatedList);
@@ -68,8 +53,7 @@ export default function Contacts() {
     setSearchInput(e.target.value);
   };
   const handleMouseOver = (i) => {
-    //const data = JSON.parse(localStorage.getItem("contacts"));
-    setCardData(ListData[i]);
+    setCardData(listData[i]);
     setColorName(localStorage.getItem(`${i}`));
     setIsHovering(true);
   };
@@ -88,7 +72,7 @@ export default function Contacts() {
     "violet",
   ];
   let index = 0;
-  const clr = (i) => {
+  const colorFunction = (i) => {
     const color = colors[index];
     index = (index + 1) % colors.length;
     localStorage.setItem(`${i}`, color);
@@ -149,7 +133,7 @@ export default function Contacts() {
                           <div
                             className={`${style.circle} rounded-circle text-white d-flex align-items-center justify-content-center mr-3`}
                             style={{
-                              backgroundColor: clr(i),
+                              backgroundColor: colorFunction(i),
                             }}
                           >
                             <span className="h4 font-weight-bold m-0">

@@ -9,7 +9,6 @@ export default function Editlist() {
   const [data, setData] = useState([]);
 
   const newEditedValue = (newContact) => {
-    console.log(newContact);
     localStorage.setItem(
       "contacts",
       JSON.stringify([...data.slice(0, id), newContact, ...data.slice(id + 1)])
@@ -22,7 +21,6 @@ export default function Editlist() {
     if (data1 && data1[id]) {
       setValue(data1[id]);
       setData(data1);
-      // console.log(value);
     }
   }
 

@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useMemo, useState } from "react";
 import style from "../styles/Card.module.css";
 export default function Card(props) {
   const [data, setData] = useState(props.value);
-  const [clr, setClr] = useState(props.color);
-  useEffect(() => {
-    setData(props.value);
-  }, [props.value]);
+  const [colorState, setColorState] = useState(props.color);
 
-  useEffect(() => {
-    setClr(props.color);
-  }, [props.color]);
+  const initials = useMemo(
+    () =>
+      data.name
+        .split(" ")
+        .map((name) => name.charAt(0))
+        .join(""),
+    [data.name]
+  );
 
   return (
     <div className={style.main}>
@@ -18,14 +20,9 @@ export default function Card(props) {
           <div className={style.header}>
             <div
               className={`${style.circle} rounded-circle text-white d-flex align-items-center justify-content-center mr-3"`}
-              style={{ backgroundColor: clr }}
+              style={{ backgroundColor: colorState }}
             >
-              <span className="h4 font-weight-bold m-0">
-                {data.name
-                  .split(" ")
-                  .map((name) => name.charAt(0))
-                  .join("")}
-              </span>
+              <span className="h4 font-weight-bold m-0">{initials}</span>
             </div>
             <h5 className="card-title mb-0">{data.name}</h5>
           </div>

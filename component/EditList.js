@@ -12,25 +12,19 @@ export default function EditList(props) {
   });
 
   useEffect(() => {
-    setFormData({
-      name: props.value.name,
-      email: props.value.email,
-      phone: props.value.phone,
-      company: props.value.company,
-      address: props.value.address,
-    });
+    const { name, email, phone, company, address } = props.value;
+    setFormData({ name, email, phone, company, address });
   }, [props.value]);
 
-  // console.log(formData);
   const handlesbm = (e) => {
     e.preventDefault();
     localStorage.getItem;
-    console.log(formData);
+
     props.newList(formData);
   };
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    console.log(event.target.value);
+
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: value,
