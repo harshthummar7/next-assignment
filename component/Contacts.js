@@ -5,63 +5,15 @@ import { Form, Button } from "react-bootstrap";
 import style from "../styles/Contacts.module.css";
 import Card from "./Card";
 import Heading from "./Heading";
-
 export default function Contacts() {
-  if (typeof window !== "undefined") {
-    var listData = JSON.parse(localStorage.getItem("contacts"));
-  }
-
+  var listData;
   const router = useRouter();
-  const [list, setList] = useState(listData || []);
+  const [list, setList] = useState([]);
   const [mainList, setMainList] = useState([]);
   const [cardData, setCardData] = useState({});
   const [colorName, setColorName] = useState("");
   const [isHovering, setIsHovering] = useState(false);
   const [searchInput, setSearchInput] = useState("");
-
-  const filterFunction = (userInput) => {
-    if (searchInput === "") {
-      setMainList(listData);
-      return;
-    }
-    const regex = new RegExp(userInput, "i");
-    if (mainList !== null) {
-      let filteredNames = mainList.filter((x) => {
-        return regex.test(x.name);
-      });
-
-      setList(filteredNames);
-    }
-  };
-
-  useEffect(() => {
-    filterFunction(searchInput);
-  }, [searchInput]);
-
-  const editList = (index) => {
-    router.push(`/edit-list/${index}`);
-  };
-
-  const deleteList = (index) => {
-    const updatedList = list.filter((data, i) => i !== index);
-    localStorage.setItem("contacts", JSON.stringify(updatedList));
-    setList(updatedList);
-    localStorage.removeItem(`${index}`);
-  };
-
-  const handleSearchInput = (e) => {
-    setSearchInput(e.target.value);
-  };
-  const handleMouseOver = (i) => {
-    setCardData(listData[i]);
-    setColorName(localStorage.getItem(`${i}`));
-    setIsHovering(true);
-  };
-  const handleMouseOut = () => {
-    setCardData({});
-    setIsHovering(false);
-    setColorName("");
-  };
   const colors = [
     "red",
     "orange",
@@ -71,7 +23,61 @@ export default function Contacts() {
     "indigo",
     "violet",
   ];
+
   let index = 0;
+
+  useEffect(() => {
+    filterFunction(searchInput);
+  }, [searchInput]);
+
+  useEffect(() => {
+    if (window && typeof window !== "undefined") {
+      listData = JSON.parse(localStorage.getItem("contacts"));
+      setList(listData);
+      setMainList(listData);
+    }
+  }, []);
+
+  const filterFunction = (userInput) => {
+    if (searchInput === "") {
+      setList(mainList);
+    }
+    const regex = new RegExp(userInput, "i");
+    if (mainList.length !== 0) {
+      let filteredNames = mainList.filter((x) => {
+        return regex.test(x.name);
+      });
+
+      setList(filteredNames);
+    }
+  };
+
+  const editList = (index) => {
+    router.push(`/edit-list/${index}`);
+  };
+
+  const deleteList = (index) => {
+    const updatedList = list.filter((data, i) => i !== index);
+    localStorage.setItem("contacts", JSON.stringify(updatedList));
+    setList(updatedList);
+    setMainList(updatedList);
+    localStorage.removeItem(`${index}`);
+  };
+
+  const handleSearchInput = (e) => {
+    setSearchInput(e.target.value);
+  };
+  const handleMouseOver = (i) => {
+    setCardData(list[i]);
+    setColorName(localStorage.getItem(`${i}`));
+    setIsHovering(true);
+  };
+  const handleMouseOut = () => {
+    setCardData({});
+    setIsHovering(false);
+    setColorName("");
+  };
+
   const colorFunction = (i) => {
     const color = colors[index];
     index = (index + 1) % colors.length;

@@ -28,28 +28,22 @@ export default function Card(props) {
           </div>
         </div>
         <div className={`${style.cardbody} card-body`}>
-          <div className={style.row}>
-            <p className={`${style.label} card-text`}>Full Name</p>
-            <p className={`${style.value} card-text`}>{data.name}</p>
-          </div>
-          <div className={style.row}>
-            <p className={`${style.label} card-text`}>Email</p>
-            <p className={`${style.value} card-text`}>{data.email}</p>
-          </div>
-          <div className={style.row}>
-            <p className={`${style.label} card-text`}>Phone</p>
-            <p className={`${style.value} card-text`}>{data.phone}</p>
-          </div>
-          <div className={style.row}>
-            <p className={`${style.label} card-text`}>Company</p>
-            <p className={`${style.value} card-text`}>{data.company}</p>
-          </div>
-          <div className={style.row}>
-            <p className={`${style.label} card-text`}>Address</p>
-            <p className={`${style.value} card-text`}>{data.address}</p>
-          </div>
+          <Row label="Full Name" value={data.name} />
+          <Row label="Email" value={data.email} />
+          <Row label="Phone" value={data.phone} />
+          <Row label="Company" value={data.company} />
+          <Row label="Address" value={data.address} />
         </div>
       </div>
     </div>
   );
 }
+
+const Row = ({ label, value }) => {
+  return (
+    <div className={style.row}>
+      <p className={`${style.label} card-text`}>{label}</p>
+      <p className={`${style.value} card-text`}>{value}</p>
+    </div>
+  );
+};

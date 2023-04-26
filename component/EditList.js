@@ -16,10 +16,8 @@ export default function EditList(props) {
     setFormData({ name, email, phone, company, address });
   }, [props.value]);
 
-  const handlesbm = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    localStorage.getItem;
-
     props.newList(formData);
   };
   const handleInputChange = (event) => {
@@ -38,7 +36,7 @@ export default function EditList(props) {
       >
         <div className={`${style.collg} col-lg-6`}>
           <div className="container">
-            <Form onSubmit={handlesbm}>
+            <Form onSubmit={handleSubmit}>
               <label className="row justify-content-center font-weight-bold">
                 Edit Contact
               </label>
@@ -54,6 +52,12 @@ export default function EditList(props) {
                   maxLength={15}
                   placeholder="Full name"
                   defaultValue={props.value.name}
+                  onInvalid={(e) =>
+                    e.target.setCustomValidity(
+                      "Please enter a valid full name containing only alphabets and maximum 15 length"
+                    )
+                  }
+                  onInput={(e) => e.target.setCustomValidity("")}
                   onChange={handleInputChange}
                 />
                 <br></br>
@@ -67,6 +71,12 @@ export default function EditList(props) {
                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                   placeholder="Email"
                   defaultValue={props.value.email}
+                  onInvalid={(e) =>
+                    e.target.setCustomValidity(
+                      "Please enter valid email address"
+                    )
+                  }
+                  onInput={(e) => e.target.setCustomValidity("")}
                   onChange={handleInputChange}
                 />
                 <br></br>
@@ -80,6 +90,12 @@ export default function EditList(props) {
                   pattern="[0-9]{10}"
                   placeholder="Phone"
                   defaultValue={props.value.phone}
+                  onInvalid={(e) =>
+                    e.target.setCustomValidity(
+                      "Please enter a valid phone number"
+                    )
+                  }
+                  onInput={(e) => e.target.setCustomValidity("")}
                   onChange={handleInputChange}
                 />
                 <br></br>
