@@ -43,7 +43,7 @@ export default function Contacts() {
       setList(mainList);
     }
     const regex = new RegExp(userInput, "i");
-    if (mainList.length !== 0) {
+    if (Array.isArray(mainList) && mainList.length !== 0) {
       let filteredNames = mainList.filter((x) => {
         return regex.test(x.name);
       });
