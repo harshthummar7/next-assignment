@@ -32,7 +32,7 @@ export default function Contacts() {
 
   useEffect(() => {
     if (window && typeof window !== "undefined") {
-      listData = JSON.parse(localStorage.getItem("contacts"));
+      listData = JSON.parse(localStorage.getItem("contacts")) || [];
       setList(listData);
       setMainList(listData);
     }
