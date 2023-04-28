@@ -1,7 +1,7 @@
 import React from "react";
 import style from "../styles/Heading.module.css";
 
-export default function Heading() {
+export const Heading = () => {
   return (
     <>
       <div className={style.main}>
@@ -15,4 +15,4 @@ export default function Heading() {
       </div>
     </>
   );
-}
+};

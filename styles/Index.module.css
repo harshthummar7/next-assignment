@@ -6,6 +6,14 @@
   box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%);
 }
 
+.nav p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #f89890;
+  height: 100%;
+}
+
 .main {
   display: flex;
   height: 100vh;

@@ -1,17 +1,8 @@
 import style from "../styles/Sidebar.module.css";
 import React from "react";
+import { icons } from "../utils/constants";
 
-export default function Sidebar() {
-  const icons = [
-    "menu-down",
-    "house-door",
-    "person",
-    "files",
-    "alarm",
-    "database",
-    "calendar",
-    "gear",
-  ];
+export const Sidebar = () => {
   return (
     <>
       <div className={style.main}>
@@ -24,7 +15,7 @@ export default function Sidebar() {
       </div>
     </>
   );
-}
+};
 
 const MenuItem = ({ icon }) => {
   return (

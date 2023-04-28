@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
 import style from "../styles/Card.module.css";
-export default function Card(props) {
+export const Card = (props) => {
   const [data, setData] = useState(props.value);
   const [colorState, setColorState] = useState(props.color);
 
@@ -37,7 +37,7 @@ export default function Card(props) {
       </div>
     </div>
   );
-}
+};
 
 const Row = ({ label, value }) => {
   return (
