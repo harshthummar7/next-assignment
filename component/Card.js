@@ -2,7 +2,7 @@ import React, { useMemo, useState } from "react";
 import style from "../styles/Card.module.css";
 export const Card = (props) => {
   const [data, setData] = useState(props.value);
-  const [colorState, setColorState] = useState(props.color);
+  // const [colorState, setColorState] = useState(props.color);
 
   const initials = useMemo(
     () =>
@@ -20,7 +20,7 @@ export const Card = (props) => {
           <div className={style.header}>
             <div
               className={`${style.circle} rounded-circle text-white d-flex align-items-center justify-content-center mr-3"`}
-              style={{ backgroundColor: colorState }}
+              style={{ backgroundColor: data.color }}
             >
               <span className="h4 font-weight-bold m-0">{initials}</span>
             </div>

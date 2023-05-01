@@ -1,19 +1,18 @@
 import { useRouter } from "next/router";
-import React, { useEffect, useState, useCallback, useMemo } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import style from "../styles/Contacts.module.css";
 import { Card } from "./Card";
 import { Heading } from "./Heading";
 import { columnName } from "@/utils/constants";
 import { ContactList } from "../component/ContactList";
 import { ContactHeader } from "./ContactHeader";
-import { colorFunction, fetchContact, setLocalStorage } from "@/utils/helper";
+import { fetchContact, setLocalStorage } from "@/utils/helper";
 
 export default function Contacts() {
   const router = useRouter();
   const [list, setList] = useState([]);
   const [mainList, setMainList] = useState([]);
   const [cardData, setCardData] = useState({});
-  const [colorName, setColorName] = useState("");
   const [isHovering, setIsHovering] = useState(false);
   const [searchInput, setSearchInput] = useState("");
 
@@ -59,7 +58,6 @@ export default function Contacts() {
   const handleMouseOver = useCallback(
     (i) => {
       setCardData(list[i]);
-      setColorName(list[i].color);
       setIsHovering(true);
     },
     [list]
@@ -68,8 +66,7 @@ export default function Contacts() {
   const handleMouseOut = useCallback(() => {
     setCardData({});
     setIsHovering(false);
-    setColorName("");
-  }, [list]);
+  }, []);
 
   return (
     <>
@@ -82,14 +79,13 @@ export default function Contacts() {
             list={list}
             handleMouseOver={handleMouseOver}
             handleMouseOut={handleMouseOut}
-            colorFunction={colorFunction}
             editList={editList}
             deleteList={deleteList}
             columnName={columnName}
           />
         )}
       </div>
-      {isHovering ? <Card value={cardData} color={colorName}></Card> : null}
+      {isHovering ? <Card value={cardData}></Card> : null}
     </>
   );
 }

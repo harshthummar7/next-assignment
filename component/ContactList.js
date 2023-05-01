@@ -5,11 +5,14 @@ export const ContactList = ({
   list,
   handleMouseOver,
   handleMouseOut,
-  colorFunction,
   editList,
   deleteList,
   columnName,
 }) => {
+  const colorFunction = (i) => {
+    return list[i].color;
+  };
+
   return (
     <>
       <div className="row">

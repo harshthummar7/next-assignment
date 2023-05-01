@@ -30,7 +30,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 8vh;
+  height: 12vh;
 }
 
 .cardbody:hover {
